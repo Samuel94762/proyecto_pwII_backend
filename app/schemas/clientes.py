@@ -1,0 +1,57 @@
+from typing import Optional, List
+from datetime import datetime, timezone
+from sqlmodel import SQLModel, Field
+from sqlalchemy import Column, Integer, String, ForeignKey, Boolean, DateTime, text
+
+
+class Cliente(SQLModel, table=True):
+    __tablename__ = "clientes"
+    id: Optional[int] = Field(
+        default=None, sa_column=Column("id_cli", Integer, primary_key=True)
+    )
+    nombre: str = Field(sa_column=Column("nombre_cli", String(255), nullable=False))
+    apellido_paterno: str = Field(sa_column=Column("apellido_paterno_cli", String(255), nullable=False))
+    apellido_materno: str = Field(sa_column=Column("apellido_materno_cli", String(255), nullable=False))
+    telefono: Optional[str] = Field(
+        default=None, sa_column=Column("telefono_cli", String(20), nullable=True)
+    )
+    created_by: Optional[int] = Field(
+        default=None,
+        sa_column=Column("created_by_cli", Integer, ForeignKey("users.id")),
+    )
+    updated_by: Optional[int] = Field(
+        default=None,
+        sa_column=Column("updated_by_cli", Integer, ForeignKey("users.id")),
+    )
+    created_at: datetime = Field(
+        default_factory=lambda: datetime.now(timezone.utc),
+        sa_column=Column(
+            "created_at_cli",
+            DateTime(timezone=True),
+            nullable=False,
+            server_default=text("CURRENT_TIMESTAMP"),
+        ),
+    )
+    updated_at: datetime = Field(
+        default_factory=lambda: datetime.now(timezone.utc),
+        sa_column=Column(
+            "updated_at_cli",
+            DateTime(timezone=True),
+            nullable=False,
+            server_default=text("CURRENT_TIMESTAMP"),
+        ),
+    )
+    deleted_at: Optional[datetime] = Field(
+        default=None,
+        sa_column=Column("deleted_at_cli", DateTime(timezone=True), nullable=True),
+    )
+    deleted_by: Optional[int] = Field(
+        default=None,
+        sa_column=Column(
+            "deleted_by_cli", Integer, ForeignKey("users.id"), nullable=True
+        ),
+    )
+    is_deleted: bool = Field(
+        default=False,
+        sa_column=Column("is_deleted_cli", Boolean, nullable=False, server_default="0"),
+    )
