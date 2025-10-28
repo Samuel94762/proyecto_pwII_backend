@@ -38,3 +38,19 @@ class Servicio(SQLModel, table=True):
         default=False,
         sa_column=Column("is_deleted_ser", Boolean, nullable=False, server_default="0"),
     )
+    
+class ServicioCreate(SQLModel):
+    nombre: str
+    descripcion: str
+    precio: float
+    
+class ServicioUpdate(SQLModel):
+    nombre: Optional[str] = None
+    descripcion: Optional[str] = None
+    precio: Optional[float] = None
+
+class ServicioRead(SQLModel):
+    id: int
+    nombre: str
+    descripcion: str
+    precio: float
