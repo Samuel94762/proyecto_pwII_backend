@@ -1,6 +1,6 @@
 from typing import Optional, List
 from datetime import datetime, timezone
-from sqlmodel import SQLModel, Field
+from sqlmodel import Relationship, SQLModel, Field
 from sqlalchemy import Column, Integer, String, ForeignKey, Boolean, DateTime, text
 
 
@@ -41,6 +41,7 @@ class Cliente(SQLModel, table=True):
         default=False,
         sa_column=Column("is_deleted_cli", Boolean, nullable=False, server_default="0"),
     )
+    equipos: List["Equipo"] = Relationship(back_populates="dueno")
     
 class ClienteCreate(SQLModel):
     nombre: str
