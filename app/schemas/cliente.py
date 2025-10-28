@@ -15,14 +15,6 @@ class Cliente(SQLModel, table=True):
     telefono: Optional[str] = Field(
         default=None, sa_column=Column("telefono_cli", String(20), nullable=True)
     )
-    created_by: Optional[int] = Field(
-        default=None,
-        sa_column=Column("created_by_cli", Integer, ForeignKey("users.id")),
-    )
-    updated_by: Optional[int] = Field(
-        default=None,
-        sa_column=Column("updated_by_cli", Integer, ForeignKey("users.id")),
-    )
     created_at: datetime = Field(
         default_factory=lambda: datetime.now(timezone.utc),
         sa_column=Column(
@@ -45,13 +37,27 @@ class Cliente(SQLModel, table=True):
         default=None,
         sa_column=Column("deleted_at_cli", DateTime(timezone=True), nullable=True),
     )
-    deleted_by: Optional[int] = Field(
-        default=None,
-        sa_column=Column(
-            "deleted_by_cli", Integer, ForeignKey("users.id"), nullable=True
-        ),
-    )
     is_deleted: bool = Field(
         default=False,
         sa_column=Column("is_deleted_cli", Boolean, nullable=False, server_default="0"),
     )
+    
+class ClienteCreate(SQLModel):
+    nombre: str
+    apellido_paterno: str
+    apellido_materno: str
+    telefono: Optional[str] = None
+
+class ClienteUpdate(SQLModel):
+    nombre: Optional[str] = None
+    apellido_paterno: Optional[str] = None
+    apellido_materno: Optional[str] = None
+    telefono: Optional[str] = None
+
+class ClienteRead(SQLModel):
+    id: int
+    nombre: str
+    apellido_paterno: str
+    apellido_materno: str
+    telefono: Optional[str] = None
+    created_at: datetime
