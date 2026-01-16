@@ -1,7 +1,7 @@
 from enum import Enum
 from typing import Optional
 from datetime import datetime, timezone
-from sqlmodel import SQLModel, Field
+from sqlmodel import SQLModel, Field, Relationship
 from sqlalchemy import Column, Integer, String,  Boolean, DateTime, text
 
 
@@ -44,6 +44,8 @@ class Tecnico(SQLModel, table=True):
         default=False,
         sa_column=Column("is_deleted_tec", Boolean, nullable=False, server_default="0"),
     )
+    trabajos: Optional["Trabajo"] = Relationship(back_populates="tecnico")
+    cotizaciones: Optional["Cotizacion"] = Relationship(back_populates="tecnico")
     
 class TecnicoCreate(SQLModel):
     nombre: str

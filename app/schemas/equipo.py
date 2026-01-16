@@ -53,6 +53,7 @@ class Equipo(SQLModel, table=True):
     )
     tipo_equipo: Optional["TipoEquipo"] = Relationship(back_populates="equipos")
     dueno: Optional["Cliente"] = Relationship(back_populates="equipos")
+    cotizaciones: Optional["Cotizacion"] = Relationship(back_populates="equipo")
 
 
 class EquipoCreate(SQLModel):
@@ -74,6 +75,7 @@ class EquipoRead(SQLModel):
     modelo: str
     tipo_equipo: Optional[TipoEquipoRead] = None
     dueno: Optional[ClienteRead] = None
+    estado: Optional[EstadoEquipoEnum] = None
     created_at: datetime
     
 

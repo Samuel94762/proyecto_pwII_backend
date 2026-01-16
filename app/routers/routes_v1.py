@@ -7,6 +7,8 @@ from app.routers.v1 import (
     tipo_equipo_routes,
     tecnico_routes,
     servicio_routes,
+    cotizacion_routes,
+    trabajo_routes,
 )
 
 
@@ -18,3 +20,5 @@ api_router_v1.include_router(equipo_routes.router)
 api_router_v1.include_router(tipo_equipo_routes.router)
 api_router_v1.include_router(tecnico_routes.router)
 api_router_v1.include_router(servicio_routes.router)
+api_router_v1.include_router(cotizacion_routes.router)
+api_router_v1.include_router(trabajo_routes.router)

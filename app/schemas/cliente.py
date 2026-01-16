@@ -42,6 +42,7 @@ class Cliente(SQLModel, table=True):
         sa_column=Column("is_deleted_cli", Boolean, nullable=False, server_default="0"),
     )
     equipos: List["Equipo"] = Relationship(back_populates="dueno")
+    cotizaciones: List["Cotizacion"] = Relationship(back_populates="cliente")
     
 class ClienteCreate(SQLModel):
     nombre: str
