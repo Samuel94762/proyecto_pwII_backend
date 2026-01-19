@@ -1,4 +1,4 @@
-from typing import Optional
+from typing import List, Optional
 from datetime import datetime, timezone
 from sqlmodel import Relationship, SQLModel, Field
 from sqlalchemy import Column, Integer, String, Boolean, DateTime, text
@@ -48,6 +48,8 @@ class ServicioUpdate(SQLModel):
     nombre: Optional[str] = None
     descripcion: Optional[str] = None
     precio: Optional[float] = None
+
+    cotizaciones: List["CotizacionServicio"] = Relationship(back_populates="servicio")
 
 class ServicioRead(SQLModel):
     id: int

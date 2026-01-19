@@ -2,7 +2,7 @@ from fastapi import FastAPI
 from app.routers.routes_v1 import api_router_v1
 from fastapi.middleware.cors import CORSMiddleware
 
-PROJECT_NAME = "PROYECTO_SI1"
+PROJECT_NAME = "PROYECTO_PROGRAMACIÓN_WEB_II"
 PROJECT_DESCRIPTION = "API para Sistema de información para registro de ventas de servicios computacionales."
 API_V1_STR: str = "/api/v1"
 
