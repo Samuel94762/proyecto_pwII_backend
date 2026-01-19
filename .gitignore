@@ -19,3 +19,6 @@ build/
 
 # IDE and editor configurations
 .vscode/
+
+_pytest_cache/
+__pycache__/
