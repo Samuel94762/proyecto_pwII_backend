@@ -24,3 +24,5 @@ build/
 pycache__/__pycache__/
 *.pyc   
 __pypackages__/
+
+# marvin se la come
