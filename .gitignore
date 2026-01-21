@@ -20,5 +20,7 @@ build/
 # IDE and editor configurations
 .vscode/
 
-_pytest_cache/
-__pycache__/
+
+pycache__/__pycache__/
+*.pyc   
+__pypackages__/
