@@ -40,7 +40,6 @@ def update_existing_cliente(
     session.flush()
     session.refresh(cliente)
     return cliente
-#isabel la quiero mucho 
 
 def save_cliente_changes(session: Session, cliente: Cliente) -> None:
     session.add(cliente)
